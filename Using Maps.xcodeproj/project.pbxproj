@@ -14,6 +14,7 @@
 		A7788FAC1A68B73D00078444 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7788FAA1A68B73D00078444 /* LaunchScreen.xib */; };
 		A7788FB81A68B73D00078444 /* Using_MapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788FB71A68B73D00078444 /* Using_MapsTests.swift */; };
 		A7788FC21A68B7C600078444 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7788FC11A68B7C600078444 /* MapKit.framework */; };
+		A7788FC41A68CA9C00078444 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7788FC31A68CA9C00078444 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		A7788FB61A68B73D00078444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7788FB71A68B73D00078444 /* Using_MapsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Using_MapsTests.swift; sourceTree = "<group>"; };
 		A7788FC11A68B7C600078444 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A7788FC31A68CA9C00078444 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7788FC41A68CA9C00078444 /* CoreLocation.framework in Frameworks */,
 				A7788FC21A68B7C600078444 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +65,7 @@
 		A7788F931A68B73D00078444 = {
 			isa = PBXGroup;
 			children = (
+				A7788FC31A68CA9C00078444 /* CoreLocation.framework */,
 				A7788FC11A68B7C600078444 /* MapKit.framework */,
 				A7788F9E1A68B73D00078444 /* Using Maps */,
 				A7788FB41A68B73D00078444 /* Using MapsTests */,
