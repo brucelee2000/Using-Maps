@@ -8,14 +8,31 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    
+    var manager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        // +--- Determine User location by Core location ---+
+        // +------------------------------------------------+
+        
+        // Step1. Manually create delegate for manager
+        manager.delegate = self
+        // Step2. Select accuracy
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        // Step3. Request authorization: whenInUse or always
+        manager.requestWhenInUseAuthorization()
+        // Step4. Updating location
+        manager.startUpdatingLocation()
+        
         
         // +--- Show the region on map ---+
         // +------------------------------+
@@ -71,6 +88,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // +--- User add their own annotation by long pressing on the map ---+
+    // +-----------------------------------------------------------------+
 
     // Step2. Create gesture calling function
     func userAction(gestureRecognizer:UIGestureRecognizer) {
@@ -90,6 +111,29 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         // 2.5 - Add annotation to the map
         mapView.addAnnotation(userAnnotation)
+    }
+    
+    // +--- Determine User location by Core location ---+
+    // +------------------------------------------------+
+    
+    // Step4.1 - Function will run every time the location is updated
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var userLocation:CLLocation = locations[0] as CLLocation
+
+        // Show the region on map
+        var latDelta:CLLocationDegrees = 0.02
+        var lonDelta:CLLocationDegrees = 0.02
+        var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+
+        var location:CLLocationCoordinate2D = userLocation.coordinate
+        var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
+    // Step4.2 - Function will run if locaiton update failed such as user reject location request or no signal...
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println(error)
     }
 
 }
