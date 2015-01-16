@@ -17,12 +17,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // +--- Show the region on map ---+
+        // +------------------------------+
+        
         // Step1. Define map parameters
         // - 1.1 Define position
         var latitude:CLLocationDegrees = 40.748712
         var longitude:CLLocationDegrees = -73.985691
         // - 1.2 Define zoom level: bigger means more zoom out
-        var latDelta:CLLocationDegrees = 0.01
+        var latDelta:CLLocationDegrees = 0.02
         var lonDelta:CLLocationDegrees = 0.01
         
         // Step2. Define the target region
@@ -35,6 +38,23 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         // Step3. Show the region on the map
         mapView.setRegion(region, animated: true)
+        
+
+        // +--- Add annotation OBJECT to map ---+
+        // +------------------------------------+
+        
+        // Step1. Create annotation for the location
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        
+        // Step2. Set annotation properties
+        annotation.title = "Empire State Building"
+        annotation.subtitle = "Test for map usage"
+        
+        // Step3. Add annotation to the map
+        mapView.addAnnotation(annotation)
+
+        
         
     }
 
