@@ -53,9 +53,18 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         // Step3. Add annotation to the map
         mapView.addAnnotation(annotation)
-
         
         
+        // +--- User add their own annotation by long pressing on the map ---+
+        // +-----------------------------------------------------------------+
+        
+        // Step1. Construct target gesture - Long Pressed
+        // ":" means func has parameters, w/o ":" means func has no parameters
+        var longPressed = UILongPressGestureRecognizer(target: self, action: "userAction:")
+        longPressed.minimumPressDuration = 2.0
+        
+        // Step3. Add target guesture to the map for recognition
+        mapView.addGestureRecognizer(longPressed)
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,6 +72,25 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    // Step2. Create gesture calling function
+    func userAction(gestureRecognizer:UIGestureRecognizer) {
+        // 2.1 - Obtain touchpoint from the map
+        var touchPoint = gestureRecognizer.locationInView(self.mapView)
+        
+        // 2.2 - Convert touchpoint to Coordinate/location
+        var userCoordinate:CLLocationCoordinate2D = mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+        
+        // 2.3 - Create annotation for the location
+        var userAnnotation = MKPointAnnotation()
+        userAnnotation.coordinate = userCoordinate
+        
+        // 2.4 - Set annotation properties
+        userAnnotation.title = "User touch here"
+        userAnnotation.subtitle = "User..."
+        
+        // 2.5 - Add annotation to the map
+        mapView.addAnnotation(userAnnotation)
+    }
 
 }
 
