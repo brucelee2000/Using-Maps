@@ -30,7 +30,7 @@ Show target region on the map
         // Step3. Show the region on the map
         mapView.setRegion(region, animated: true)
         
-Add annotations on the map
+Add/Select/Remove annotations on the map
 --------------------------
 * **Step 1. Create annotation for the location**
 
@@ -50,6 +50,11 @@ Add annotations on the map
         mapView.addAnnotation(annotation)
         // Select annotation to show the popout
         myMap.selectAnnotation(annotation, animated: true)
+        
+* **Optional. Select/remove annotations on the map**
+
+        var deselectedAnnotations = myMap.selectedAnnotations
+        myMap.removeAnnotations(deselectedAnnotations)
         
 Add guestures on the map
 ------------------------
