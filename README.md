@@ -126,6 +126,8 @@ Track user current location
 
         // Step4. Updating location
         manager.startUpdatingLocation()
+        // Optional to stop updating location once address is obtained
+        manager.stopUpdatingLocation()
         
 * **Step 5 Show user location on map by calling *"didUpdateLocations"*.** 
 
